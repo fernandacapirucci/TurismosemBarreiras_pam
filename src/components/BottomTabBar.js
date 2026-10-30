@@ -7,7 +7,7 @@ import colors from '../theme/colors';
 const itens = [
   { id: 'Home', titulo: 'Início', icone: 'home', rota: 'Home' },
   { id: 'Pacotes', titulo: 'Pacotes', icone: 'package', rota: 'Pacotes' },
-  { id: 'Ajuda', titulo: 'Central de ajuda', icone: 'headphones', rota: null },
+  { id: 'Ajuda', titulo: 'Central de ajuda', icone: 'headphones', rota: 'Ajuda' },
   { id: 'Perfil', titulo: 'Perfil', icone: 'user', rota: 'Perfil' },
 ];
 

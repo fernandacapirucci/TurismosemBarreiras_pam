@@ -11,9 +11,11 @@ import BottomTabBar from '../components/BottomTabBar';
 import colors from '../theme/colors';
 
 // ---------- Dados de exemplo (edite à vontade) ----------
+// "rota" é o nome da tela no App.js. Deixe null enquanto a página do pacote não existir.
 const pacotes = [
   {
     id: 'rio',
+    rota: 'Rio', // quando criar a tela, troque por 'Rio'
     regiao: 'Rio de Janeiro',
     local: 'Rio de Janeiro - RJ',
     titulo: 'Rio de Janeiro Clássico — 4 dias',
@@ -34,6 +36,7 @@ const pacotes = [
   },
   {
     id: 'gramado',
+    rota: null, // quando criar a tela, troque por 'Gramado'
     regiao: 'Rio Grande do Sul',
     local: 'Gramado & Canela - RS',
     titulo: 'Gramado Cultura Viva — 5 dias',
@@ -54,6 +57,7 @@ const pacotes = [
   },
   {
     id: 'salvador',
+    rota: 'Salvador',
     regiao: 'Bahia',
     local: 'Salvador - BA',
     titulo: 'Salvador Cultura Viva — 4 dias',
@@ -68,12 +72,13 @@ const pacotes = [
     nota: 4.7,
     deficiencias: ['Física', 'Visual', 'Auditiva'],
     transporte: true,
-    hospedagem: false,
+    hospedagem: true,
     passeio: true,
     guia: true,
   },
   {
     id: 'bonito',
+    rota: null, // quando criar a tela, troque por 'Bonito'
     regiao: 'Mato Grosso do Sul',
     local: 'Bonito - MS',
     titulo: 'Bonito Natureza Acessível — 4 dias',
@@ -161,7 +166,7 @@ function Checkbox({ texto, marcado, onPress }) {
   );
 }
 
-function CardPacote({ item }) {
+function CardPacote({ item, navigation }) {
   return (
     <View style={styles.card}>
       <View>
@@ -213,7 +218,10 @@ function CardPacote({ item }) {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.botaoDetalhes}>
+        <TouchableOpacity
+          style={styles.botaoDetalhes}
+          onPress={() => item.rota && navigation.navigate(item.rota)}
+        >
           <Text style={styles.botaoDetalhesTexto}>Ver detalhes</Text>
         </TouchableOpacity>
       </View>
@@ -360,7 +368,7 @@ export default function Pacotes({ navigation }) {
         {/* Lista de pacotes */}
         <View style={styles.lista}>
           {lista.map((item) => (
-            <CardPacote key={item.id} item={item} />
+            <CardPacote key={item.id} item={item} navigation={navigation} />
           ))}
 
           {lista.length === 0 && (
@@ -377,7 +385,6 @@ export default function Pacotes({ navigation }) {
       <BottomTabBar navigation={navigation} ativa="Pacotes" />
       <StatusBar style="dark" />
     </View>
-    
   );
 }
 

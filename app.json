@@ -8,7 +8,6 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true
-    
     },
     "android": {
       "adaptiveIcon": {
@@ -17,24 +16,27 @@
         "backgroundImage": "./src/assets/android-icon-background.png",
         "monochromeImage": "./src/assets/android-icon-monochrome.png"
       }
-      
     },
     "splash": {
-  "image": "./src/assets/icon.png",
-  "resizeMode": "contain",
-  "backgroundColor": "#ffffff"
-},
+      "image": "./src/assets/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "web": {
       "favicon": "./src/assets/favicon.png"
     },
     "plugins": [
-  [
-    "expo-image-picker",
-    {
-      "photosPermission": "O aplicativo precisa acessar suas fotos para você escolher uma foto de perfil.",
-      "cameraPermission": "O aplicativo precisa acessar sua câmera para tirar uma foto de perfil."
-    }
-  ]
-]
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O aplicativo precisa acessar suas fotos para você escolher uma foto de perfil.",
+          "cameraPermission": "O aplicativo precisa acessar sua câmera para tirar uma foto de perfil."
+        }
+      ],
+      "expo-video",
+      "expo-audio",
+      "expo-sharing",
+      "expo-asset"
+    ]
   }
 }
