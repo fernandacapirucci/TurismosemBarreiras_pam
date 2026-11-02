@@ -90,17 +90,23 @@ const destino = {
 
   // Texto da tela branca "Leitura fácil". Troque pelo texto do seu site.
   leituraFacil: [
-    'Este é o pacote Salvador Cultura.',
-    'A viagem dura 4 dias e 3 noites.',
-    'Você vai conhecer o Pelourinho e as praias de Salvador.',
-    'Nas praias, tem cadeira anfíbia para quem precisa.',
-    'Você vai comer comida típica da Bahia.',
-    'O hotel e o transporte são adaptados.',
-    'Um guia especializado vai com você o tempo todo.',
-    'O preço é a partir de R$ 1.690,00 por pessoa.',
-    'Dá para pagar em até 12 vezes no cartão.',
-    'Você pode cancelar até 7 dias antes da viagem e receber o dinheiro de volta.',
-  ],
+'Este é o pacote para Salvador.',
+'A viagem dura 4 dias.',
+'O preço começa em R$ 1.890,00 por pessoa.',
+'O pacote inclui van adaptada, guia especializado, seguro-viagem, hotel e café da manhã.',
+'O hotel se chama The Hotel e fica no bairro da Barra.',
+'O quarto e o banheiro do hotel são adaptados.',
+'A praia fica a 400 metros do hotel.',
+'Você vai visitar o Pelourinho e a praia da Barra.',
+'Os passeios têm acesso para cadeira de rodas, mas o Pelourinho tem ladeiras e chão de pedra.',
+'Um guia especializado fica com você o tempo todo.',
+'Se precisar de ajuda especial, avise a agência com 7 dias de antecedência.',
+'Você pode adicionar ou remover passeios, mas o preço muda e depende da confirmação da agência.',
+'O que levar na mala: roupa leve, capa de chuva, protetor solar, chapéu, garrafa de água, calçado fechado e confortável, seus remédios e documentos.',
+'Em Salvador faz calor e pode chover, com mais chuvas entre abril e junho.',
+'Em caso de emergência, ligue para Ambulância (192), Bombeiros (193) ou Polícia (190) e avise o guia e a agência.',
+'Para falar com a agência, ligue para o telefone 0800 123 4567 ou envie mensagem para o WhatsApp 11 99234-5678.'
+],
 
   // Estes 3 arquivos estão direto em src/assets
   midia: {

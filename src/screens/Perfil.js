@@ -3,7 +3,9 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import Logo from '../assets/Logo.png';
 import BottomTabBar from '../components/BottomTabBar';
+import Rodape from '../components/Rodape';
 import colors from '../theme/colors';
 import { useUsuario } from '../context/UsuarioContext';
 
@@ -16,6 +18,7 @@ const opcoes = [
 
 export default function Perfil({ navigation }) {
   const { usuario } = useUsuario();
+  const nome = usuario?.nome;
   const [foto, setFoto] = useState(null);
 
   const escolherDaGaleria = async () => {
@@ -58,6 +61,29 @@ export default function Perfil({ navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Faixa da central */}
+        <View style={styles.faixaCentral}>
+          <Feather name="phone-call" size={14} color={colors.tealDark} />
+          <Text style={styles.faixaTexto}>Central 0800 123 4567</Text>
+        </View>
+
+        {/* Cabeçalho */}
+        <View style={styles.cabecalho}>
+          <Image source={Logo} style={styles.logo} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.appNome}>Turismo sem Barreiras</Text>
+            <Text style={styles.appSub}>Viagens acessíveis pelo Brasil</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.botaoEntrar}
+            onPress={() => navigation.navigate('Login')}
+          >
+            <Text style={styles.botaoEntrarTexto}>
+              {nome ? `Olá, ${nome}` : 'Entrar ou cadastrar'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.header}>
           <TouchableOpacity onPress={editarFoto}>
             {foto ? (
@@ -72,7 +98,7 @@ export default function Perfil({ navigation }) {
             </View>
           </TouchableOpacity>
 
-          <Text style={styles.nome}>{usuario.nome || 'Usuário'}</Text>
+          <Text style={styles.nome}>{nome || 'Usuário'}</Text>
 
           <TouchableOpacity style={styles.botaoEditar} onPress={editarFoto}>
             <Text style={styles.textoBotaoEditar}>Editar perfil</Text>
@@ -103,10 +129,13 @@ export default function Perfil({ navigation }) {
             <Text style={[styles.itemTexto, { color: colors.danger }]}>Sair da conta</Text>
           </TouchableOpacity>
         </View>
+
+        {/* Rodapé */}
+        <Rodape navigation={navigation} />
       </ScrollView>
 
       <BottomTabBar navigation={navigation} ativa="Perfil" />
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
     </View>
   );
 }
@@ -114,12 +143,63 @@ export default function Perfil({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
   },
+
+  // Faixa e cabeçalho (iguais aos da Home)
+  faixaCentral: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 44,
+    paddingBottom: 8,
+    backgroundColor: '#F4F7F7',
+  },
+  faixaTexto: {
+    fontSize: 12,
+    color: '#1A1A2E',
+    marginLeft: 6,
+  },
+  cabecalho: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: '#FFFFFF',
+  },
+  logo: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 8,
+  },
+  appNome: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#1A1A2E',
+  },
+  appSub: {
+    fontSize: 10,
+    color: '#6B7280',
+  },
+  botaoEntrar: {
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    borderRadius: 20,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+  },
+  botaoEntrarTexto: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#1A1A2E',
+  },
+
+  // Perfil
   header: {
     backgroundColor: colors.teal,
     alignItems: 'center',
-    paddingTop: 50,
+    paddingTop: 24,
     paddingBottom: 24,
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
@@ -129,12 +209,12 @@ const styles = StyleSheet.create({
     height: 84,
     borderRadius: 42,
     borderWidth: 3,
-    borderColor: colors.white
+    borderColor: colors.white,
   },
   fotoVazia: {
     backgroundColor: colors.tealLight,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   iconeCamera: {
     position: 'absolute',
@@ -153,7 +233,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 17,
     fontWeight: '700',
-    marginTop: 10
+    marginTop: 10,
   },
   botaoEditar: {
     marginTop: 12,
@@ -161,12 +241,12 @@ const styles = StyleSheet.create({
     borderColor: colors.white,
     borderRadius: 20,
     paddingHorizontal: 18,
-    paddingVertical: 6
+    paddingVertical: 6,
   },
   textoBotaoEditar: {
     color: colors.white,
     fontSize: 12,
-    fontWeight: '600'
+    fontWeight: '600',
   },
   lista: {
     backgroundColor: colors.white,
@@ -182,11 +262,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 14,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
   },
   itemTexto: {
     flex: 1,
     fontSize: 14,
-    color: '#1A1A2E'
+    color: '#1A1A2E',
   },
 });

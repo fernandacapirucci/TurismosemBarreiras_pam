@@ -9,6 +9,7 @@ import Bonito from '../assets/bonito.webp';
 import Cabecalho from '../components/Cabecalho';
 import BottomTabBar from '../components/BottomTabBar';
 import colors from '../theme/colors';
+import Rodape from '../components/Rodape';
 
 // ---------- Dados de exemplo (edite à vontade) ----------
 // "rota" é o nome da tela no App.js. Deixe null enquanto a página do pacote não existir.
@@ -36,7 +37,7 @@ const pacotes = [
   },
   {
     id: 'gramado',
-    rota: null, // quando criar a tela, troque por 'Gramado'
+    rota: 'Gramado', // quando criar a tela, troque por 'Gramado'
     regiao: 'Rio Grande do Sul',
     local: 'Gramado & Canela - RS',
     titulo: 'Gramado Cultura Viva — 5 dias',
@@ -78,7 +79,7 @@ const pacotes = [
   },
   {
     id: 'bonito',
-    rota: null, // quando criar a tela, troque por 'Bonito'
+    rota: 'Bonito', // quando criar a tela, troque por 'Bonito'
     regiao: 'Mato Grosso do Sul',
     local: 'Bonito - MS',
     titulo: 'Bonito Natureza Acessível — 4 dias',
@@ -380,6 +381,7 @@ export default function Pacotes({ navigation }) {
             </View>
           )}
         </View>
+        <Rodape navigation={navigation} />
       </ScrollView>
 
       <BottomTabBar navigation={navigation} ativa="Pacotes" />

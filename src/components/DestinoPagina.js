@@ -19,6 +19,7 @@ import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import Cabecalho from './Cabecalho';
 import BottomTabBar from './BottomTabBar';
 import colors from '../theme/colors';
+import Rodape from './Rodape';
 
 const filtrosFoto = ['Tudo', 'Passeios', 'Hospedagem', 'Transporte', 'Comida'];
 
@@ -503,6 +504,7 @@ export default function DestinoPagina({ navigation, destino }) {
         </View>
 
         <View style={{ height: 24 }} />
+        <Rodape navigation={navigation} />
       </ScrollView>
 
       <ModalLibras

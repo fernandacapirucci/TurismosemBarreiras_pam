@@ -20,6 +20,7 @@ import Bonito from '../assets/bonito.webp';
 import BottomTabBar from '../components/BottomTabBar';
 import colors from '../theme/colors';
 import { useUsuario } from '../context/UsuarioContext';
+import Rodape from '../components/Rodape';
 
 const opcoesDestino = ['Bonito', 'Gramado', 'Salvador', 'Rio de Janeiro'];
 const opcoesViajantes = ['1 viajante', '2 viajantes', '3 viajantes', '4 viajantes', '5 viajantes'];
@@ -30,11 +31,12 @@ const opcoesNecessidade = [
   'Acessibilidade auditiva',
 ];
 
+// "tela" = nome da rota registrada no navegador (Stack.Screen name="...")
 const destinos = [
-  { nome: 'Rio de Janeiro', local: 'RJ · Brasil', preco: 'R$ 1.890', selo: 'Selo Ouro', imagem: Rio },
-  { nome: 'Gramado', local: 'RS · Brasil', preco: 'R$ 2.290', selo: 'Selo Ouro', imagem: Gramado },
-  { nome: 'Salvador', local: 'BA · Brasil', preco: 'R$ 1.690', selo: 'Selo Prata', imagem: Salvador },
-  { nome: 'Bonito', local: 'MS · Brasil', preco: 'R$ 3.290', selo: 'Selo Ouro', imagem: Bonito },
+  { nome: 'Rio de Janeiro', tela: 'Rio', local: 'RJ · Brasil', preco: 'R$ 1.890', selo: 'Selo Ouro', imagem: Rio },
+  { nome: 'Gramado', tela: 'Gramado', local: 'RS · Brasil', preco: 'R$ 2.290', selo: 'Selo Ouro', imagem: Gramado },
+  { nome: 'Salvador', tela: 'Salvador', local: 'BA · Brasil', preco: 'R$ 1.690', selo: 'Selo Prata', imagem: Salvador },
+  { nome: 'Bonito', tela: 'Bonito', local: 'MS · Brasil', preco: 'R$ 3.290', selo: 'Selo Ouro', imagem: Bonito },
 ];
 
 const passos = [
@@ -98,7 +100,7 @@ function CampoSelect({ icone, tipo, placeholder, valor, opcoes, aberto, onToggle
   );
 }
 
-function CardDestino({ item }) {
+function CardDestino({ item, navigation }) {
   return (
     <View style={styles.cardDestino}>
       {item.imagem ? (
@@ -126,7 +128,10 @@ function CardDestino({ item }) {
             <Text style={styles.destinoApartir}>A partir de</Text>
             <Text style={styles.destinoPreco}>{item.preco}</Text>
           </View>
-          <TouchableOpacity style={styles.botaoPacotes}>
+          <TouchableOpacity
+            style={styles.botaoPacotes}
+            onPress={() => navigation.navigate(item.tela)}
+          >
             <Text style={styles.botaoPacotesTexto}>Ver pacote</Text>
           </TouchableOpacity>
         </View>
@@ -284,7 +289,7 @@ export default function Home({ navigation }) {
         <Text style={styles.secaoTitulo}>Destinos populares</Text>
         <View style={styles.listaDestinos}>
           {destinos.map((item) => (
-            <CardDestino key={item.nome} item={item} />
+            <CardDestino key={item.nome} item={item} navigation={navigation} />
           ))}
         </View>
 
@@ -309,30 +314,7 @@ export default function Home({ navigation }) {
         <Text style={styles.frase}>Acessibilidade auditada em cada detalhe</Text>
 
 
-        {/* Rodapé */}
-        <View style={styles.rodape}>
-          <View style={styles.rodapeMarca}>
-            <Image source={Logo} style={styles.logo} />
-            <Text style={styles.rodapeNome}>Turismo sem Barreiras</Text>
-          </View>
-          <Text style={styles.rodapeTexto}>
-            Conectamos viajantes com deficiência a pequenas agências especializadas em turismo
-            acessível pelo Brasil.
-          </Text>
-
-          <Text style={styles.rodapeTitulo}>EXPLORAR</Text>
-          <Text style={styles.rodapeLink}>Pacotes</Text>
-          <Text style={styles.rodapeLink}>Agências parceiras</Text>
-          <Text style={styles.rodapeLink}>Como funciona</Text>
-
-          <Text style={styles.rodapeTitulo}>INSTITUCIONAL</Text>
-          <Text style={styles.rodapeLink}>Sobre nós</Text>
-          <Text style={styles.rodapeLink}>Central de ajuda</Text>
-
-          <Text style={styles.rodapeTitulo}>FALE CONOSCO</Text>
-          <Text style={styles.rodapeLink}>☎ 0800 123 4567</Text>
-          <Text style={styles.rodapeLink}>✉ ola@turismosembarreiras.com.br</Text>
-        </View>
+        <Rodape navigation={navigation} />
       </ScrollView>
 
       <BottomTabBar navigation={navigation} ativa="Home" />
@@ -737,39 +719,5 @@ const styles = StyleSheet.create({
     color: '#0C0636',
     fontWeight: '700',
     fontSize: 13,
-  },
-
-  // Rodapé
-  rodape: {
-    backgroundColor: '#0C0636',
-    marginTop: 28,
-    padding: 22,
-  },
-  rodapeMarca: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  rodapeNome: {
-    color: '#FFFFFF',
-    fontSize: 15,
-    fontWeight: '700',
-  },
-  rodapeTexto: {
-    color: '#C7CCE0',
-    fontSize: 12,
-    lineHeight: 18,
-  },
-  rodapeTitulo: {
-    color: '#8DE04B',
-    fontSize: 13,
-    fontWeight: '800',
-    marginTop: 22,
-    marginBottom: 8,
-  },
-  rodapeLink: {
-    color: '#FFFFFF',
-    fontSize: 13,
-    marginBottom: 8,
   },
 });

@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import Cabecalho from '../components/Cabecalho';
 import BottomTabBar from '../components/BottomTabBar';
 import colors from '../theme/colors';
+import Rodape from '../components/Rodape';
 
 const TELEFONE = '08001234567';
 const TELEFONE_TEXTO = '0800 123 4567';
@@ -138,6 +139,7 @@ export default function Ajuda({ navigation }) {
         </View>
 
         <View style={{ height: 24 }} />
+        <Rodape navigation={navigation} />
       </ScrollView>
 
       <BottomTabBar navigation={navigation} ativa="Ajuda" />

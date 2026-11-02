@@ -11,6 +11,8 @@ import PacotesScreen from './src/screens/Pacotes';
 import AjudaScreen from './src/screens/Ajuda';
 import SalvadorScreen from './src/screens/Salvador';
 import RioScreen from './src/screens/Rio';
+import GramadoScreen from './src/screens/Gramado';
+import BonitoScreen from './src/screens/Bonito';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +30,8 @@ function App() {
           <Stack.Screen name="Ajuda" component={AjudaScreen} />
           <Stack.Screen name="Salvador" component={SalvadorScreen} />
           <Stack.Screen name="Rio" component={RioScreen} />
+          <Stack.Screen name="Gramado" component={GramadoScreen} />
+          <Stack.Screen name="Bonito" component={BonitoScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </UsuarioProvider>
